@@ -19,19 +19,24 @@ export function isRoleId(value: unknown): value is RoleId {
   );
 }
 
+export type RoleType = "core" | "intermediate" | "peripheral";
+
 export type Role = {
   id: RoleId;
   name: string;
   role_desc: string;
   core_drive: string;
   most_like_when: string;
-  high_rank_desc: string;
-  low_rank_desc: string;
+  core_rank_desc: string;
+  peripheral_rank_desc: string;
   top_rank_desc: string;
   bottom_rank_desc: string;
 };
 
-export type Results = Record<RoleId, number>;
+export type RoleResults = Role[];
+export type RoleResultsMap = Record<RoleId, Role>;
+
+export type UserRoleResults = Record<RoleId, number>;
 
 export type UserId = string;
 
@@ -39,4 +44,4 @@ export function isUserId(value: unknown): value is UserId {
   return typeof value === "string";
 }
 
-export type UserResultsMap = Record<UserId, Results>;
+export type UserResultsMap = Record<UserId, UserRoleResults>;
