@@ -1,9 +1,9 @@
 import raw from "@/data/roles.json";
-import { Role, RoleId } from "@/lib/types";
+import { Role, RoleId, RoleResults } from "@/lib/types";
 
-const ROLES = raw as Role[];
+const ROLES = raw as RoleResults;
 
-export function getAllRoles(): Role[] {
+export function getAllRoles(): RoleResults {
   return ROLES;
 }
 
