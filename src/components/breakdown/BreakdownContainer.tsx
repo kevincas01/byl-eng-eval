@@ -96,7 +96,7 @@ const BreakdownContainer = ({
         <div className="absolute w-30 px-5 left-0 top-0 h-full flex items-center bg-linear-to-r from-background to-transparent z-10">
           <button
             onClick={() => scrollToCard(-1)}
-            className="rounded-full border bg-background border-border p-2 disabled:bg-gray-200"
+            className="rounded-full border bg-background border-border p-2 disabled:bg-gray-200 disabled:cursor-not-allowed"
             disabled={selectedIndex === 0}
           >
             <ChevronLeft size={28} strokeWidth={2} />
@@ -130,7 +130,7 @@ const BreakdownContainer = ({
         <div className="absolute w-30 px-5 right-0 top-0 h-full flex justify-end items-center bg-linear-to-r from-transparent to-background z-10">
           <button
             onClick={() => scrollToCard(+1)}
-            className="rounded-full border bg-background border-border p-2"
+            className="rounded-full border bg-background border-border p-2 disabled:bg-gray-200 disabled:cursor-not-allowed"
             disabled={selectedIndex === roleResults.length - 1}
           >
             <ChevronRight size={28} strokeWidth={2} />
