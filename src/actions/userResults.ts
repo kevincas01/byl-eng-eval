@@ -1,12 +1,12 @@
 "use server";
 
 import { getUserResults } from "@/lib/data/users";
-import { Results, UserId } from "@/lib/types";
+import { UserRoleResults, UserId } from "@/lib/types";
 
 export type GetUserResultsSuccess = {
   ok: true;
   userId: UserId;
-  results: Results;
+  results: UserRoleResults;
 };
 
 export type GetUserResultsError = {
@@ -25,11 +25,26 @@ export default async function getUserResultsAction(
     return { ok: false, error: "Missing or invalid userId" };
   }
 
-  const results = getUserResults(userId);
+  const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/users/${userId}`,
+      {
+        method: "GET" 
+      }
+    );
 
-  if (!results) {
+  if (!response.ok) {
+    const errorData = await response.json();
+    return {
+      ok: false,
+      error: errorData.error || "Failed to fetch user results",
+    };
+  }
+
+  const data = await response.json();
+
+  if (!data.results) {
     return { ok: false, error: "Results not found" };
   }
 
-  return { ok: true, userId, results };
+  return { ok: true, userId, results: data.results };
 }
