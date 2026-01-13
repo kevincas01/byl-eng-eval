@@ -1,28 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #f9f6ef;
   --foreground: #171717;
+  --secondary-background: #f0ebdf;
+  --text-color: #10131a;
+  --border: #c9caab;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-secondaryBg: var(--secondary-background);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
   background: var(--background);
-  color: var(--foreground);
+  color: var(--text-color);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  cursor: pointer;
 }
 
 @keyframes roleLoop {
@@ -36,4 +39,15 @@ body {
 
 .animate-role-loop {
   animation: roleLoop 28s linear infinite;
+}
+
+h1 {
+  @apply font-serif text-7xl mb-2 tracking-tighter;
+}
+
+h2 {
+  @apply font-serif text-5xl mb-2 tracking-tighter;
+}
+h3 {
+  @apply font-serif text-3xl mb-2 tracking-tighter;
 }
